@@ -40,7 +40,7 @@ import WalletTable from './WalletTable.vue';
 
     },
     created() {
-
+        
     }
   }
 
