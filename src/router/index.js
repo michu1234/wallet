@@ -11,7 +11,7 @@ const routes = [
     name: 'SignIn',
     component: () => import(/* webpackChunkName: "sign-in" */ 'src/views/SignIn'),
   },
-  {
+  { 
     path: '/wallet',
     name: 'Wallet',
     component: Wallet
