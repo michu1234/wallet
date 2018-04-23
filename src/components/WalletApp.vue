@@ -10,37 +10,60 @@
     <div class="row">
       <div class="col-sm-4">
         <p>Your wallet's balance is
-          <span class="text--info">1304,01</span>.</p>
+          <span class="text--info">{{balance}}</span>.</p>
       </div>
       <div class="col-sm-4 d-flex ml-auto align-items-center justify-content-end">
-        <button class="all">All</button>
-        <button class="withdrowal">Withdrowal</button>
-        <button class="additions">Additions</button>
+        <button @click="filterData(null,true)" class="all">All</button>
+        <button @click="filterData(filterPositive)" class="withdrowal">Withdrowal</button>
+        <button @click="filterData(filterNegative)" class="additions">Additions</button>
       </div>
     </div>
-<keep-alive><wallet-table />></keep-alive>
+    <keep-alive>
+      <wallet-table :numbers="response" />
+    </keep-alive>
   </div>
 </template>
 
 <script>
-import WalletTable from './WalletTable.vue';
+  import WalletTable from './WalletTable.vue';
+  import {
+    mapGetters
+  } from 'vuex'
 
   export default {
     name: 'Wallet',
     components: {
-        'wallet-table': WalletTable
+      'wallet-table': WalletTable
     },
     data() {
       return {
-
+        response: '',
+        balance: ''
       }
     },
+    computed: {
+        filterPositive() {
+          return this.$store.getters.filterPositive;
+        },
+        filterNegative() {
+          return this.$store.getters.filterNegative;
+        }
+    },
     methods: {
-
-
+      filterData(data, all = false) {
+        this.response = data;
+        if(all){
+          this.response = this.$store.state.tabledata.moneyData;
+        }
+      }
     },
     created() {
-        
+      this.response = this.$store.state.tabledata.moneyData;
+
+      this.balance = this.response.reduce(function (amount, next) {
+        return amount + next.amount
+      }, 0);
+
     }
   }
 
@@ -151,19 +174,13 @@ import WalletTable from './WalletTable.vue';
     font-stretch: normal;
     font-weight: 400;
     text-align: center;
-  }
-
-  //   4. Block + element 
+  } //   4. Block + element 
   .app__signout {
     min-width: 120px;
-  }
-
-  // 5. Modifier
+  } // 5. Modifier
   .text--info {
     color: $ocean-blue;
-  }
-
-  // 6. State
+  } // 6. State
   // 7. Animations
 
 </style>

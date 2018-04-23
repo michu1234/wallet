@@ -9,7 +9,7 @@ Vue.use(Vuex)
 const isDebug = process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'testing'
 const modules = {
   auth,
-  tabledata
+  tabledata,
 }
 
 export default new Vuex.Store({
