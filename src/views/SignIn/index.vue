@@ -49,9 +49,6 @@
         }
       },
     },
-    destroyed() {
-            this.$store.dispatch('runIt');
-    },
     validations: {
       email: { required, email },
       password: { required },

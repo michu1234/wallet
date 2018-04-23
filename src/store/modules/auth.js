@@ -29,6 +29,7 @@ const actions = {
       if (!lsToken) {
         commit('LOGIN')
         router.push({ name: 'Wallet' })
+        store.dispatch('runIt');
       }
     } catch (err) {
       if (lsToken) ls.remove(STORAGE_AUTH_TOKEN)

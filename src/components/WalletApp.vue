@@ -62,7 +62,6 @@
     },
     created() {
       this.response = this.$store.state.tabledata.moneyData;
-
       this.balance = this.response.reduce(function (amount, next) {
         return amount + next.amount
       }, 0);
