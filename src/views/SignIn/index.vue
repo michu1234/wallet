@@ -49,7 +49,7 @@
         }
       },
     },
-    created() {
+    destroyed() {
             this.$store.dispatch('runIt');
     },
     validations: {

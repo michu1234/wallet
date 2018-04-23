@@ -4,7 +4,7 @@
       <div class="col-2">
         <img src="../assets/logo.svg" alt="">
       </div>
-      <div class="app__signout col-2 ml-auto d-flex justify-content-end align-items-center">Sign out</div>
+      <div @click="logout" class="app__signout col-2 ml-auto d-flex justify-content-end align-items-center"><router-link to="/">Logout</router-link></div>
     </div>
 
     <div class="row">
@@ -55,6 +55,9 @@
         if(all){
           this.response = this.$store.state.tabledata.moneyData;
         }
+      },
+      logout() {
+        localStorage.removeItem("wallet-auth-token");
       }
     },
     created() {
