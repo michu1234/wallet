@@ -33,6 +33,18 @@
 </script>
 
 <style lang="scss" scoped>
+  /* Table of contents
+=====================
+// 1. Variables
+// 2. Base
+// 3. Layout
+// 4. Block + element
+// 5. Modifier
+// 6. State
+// 7. Animations
+=====================
+*/
+
   $hell-black: #353436;
   $soil-black: #4a4a4a;
   $sad-gray: #aeaeae;
@@ -53,14 +65,35 @@
     color: $ketchup-red;
   }
 
-th {
-  width: 5%;
-}
+  table {
+    min-width: 300px;
+    border-collapse: collapse;
+  }
 
-td, th {
-  text-align: left;
-}
+  thead {
+    width: 1170px;
+    height: 56px;
+    background: $pure-white;
+  }
 
+  tbody {
+    background: $almost-white;
+  }
+
+  th {
+    width: 5%;
+  }
+
+  td,
+  th {
+    text-align: left;
+    height: 56px;
+    min-width: 97px;
+    padding-left: 2%;
+    @media screen and (min-width: 400px) {
+      padding-left: 4%;
+    }
+  }
 
 </style>
 

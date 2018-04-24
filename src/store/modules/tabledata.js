@@ -38,7 +38,6 @@ const actions = {
       }).then(function (resources) {
         let rawData = resources.data;
         context.commit('updateData', rawData);
-        console.log(state.moneyData);
       });
     } catch (err) {
       console.log(err); 

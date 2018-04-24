@@ -1,23 +1,27 @@
 <template>
   <div id="app" class="container">
-    <div class="row">
-      <div class="col-2">
-        <img src="../assets/logo.svg" alt="">
+    <header>
+      <div class="row">
+          <div class="col-3 d-flex align-items-center">
+            <img src="../assets/LogoNormal.svg" alt="">
+            <h1 class="app__name">WALLET</h1>
+          </div>
+        <div @click="logout" class="app__signout col-2 ml-auto d-flex justify-content-center justify-content-md-end align-items-center">
+          <router-link to="/">Sign out</router-link>
+        </div>
       </div>
-      <div @click="logout" class="app__signout col-2 ml-auto d-flex justify-content-end align-items-center"><router-link to="/">Logout</router-link></div>
-    </div>
-
-    <div class="row">
+    </header>
+    <section class="row app__bar">
       <div class="col-sm-4">
         <p>Your wallet's balance is
           <span class="text--info">{{balance}}</span>.</p>
       </div>
       <div class="col-sm-4 d-flex ml-auto align-items-center justify-content-end">
         <button @click="filterData(null,true)" class="all">All</button>
-        <button @click="filterData(filterPositive)" class="withdrowal">Withdrowal</button>
-        <button @click="filterData(filterNegative)" class="additions">Additions</button>
+        <button @click="filterData(filterNegative)" class="withdrowal">Withdrowal</button>
+        <button @click="filterData(filterPositive)" class="additions">Additions</button>
       </div>
-    </div>
+    </section>
     <keep-alive>
       <wallet-table :numbers="response" />
     </keep-alive>
@@ -42,17 +46,17 @@
       }
     },
     computed: {
-        filterPositive() {
-          return this.$store.getters.filterPositive;
-        },
-        filterNegative() {
-          return this.$store.getters.filterNegative;
-        }
+      filterPositive() {
+        return this.$store.getters.filterPositive;
+      },
+      filterNegative() {
+        return this.$store.getters.filterNegative;
+      }
     },
     methods: {
       filterData(data, all = false) {
         this.response = data;
-        if(all){
+        if (all) {
           this.response = this.$store.state.tabledata.moneyData;
         }
       },
@@ -100,6 +104,31 @@
   // 2. Base
   #app {
     margin-top: 10px;
+    min-height: 140vh;
+    overflow-x: hidden;
+  }
+
+  .container {
+    padding-left: 1%;
+    padding-right: 1%;
+    @media screen and (min-width: 400px) {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  }
+
+  .app__name {
+    color: $soil-black;
+    font-size: 35px;
+    margin-left: 5px;
+    letter-spacing: 2px;
+    @media screen and (min-width: 400px){
+      margin-left: 20px;
+    }
+  }
+
+  header {
+    margin-bottom: 120px;
   }
 
   p {
@@ -119,10 +148,6 @@
     height: 50px;
   }
 
-  div {
-    border: 1px solid gray;
-  }
-
   button {
     height: 40px;
     color: #4a4a4a;
@@ -138,7 +163,7 @@
     border-radius: 0;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
-    width: 51px;
+    min-width: 51px;
     height: 40px;
     background: $ocean-blue;
     color: #4a4a4a;
@@ -152,7 +177,7 @@
 
   .additions {
     border-radius: 0;
-    width: 100px;
+    min-width: 100px;
     height: 40px;
     background: #f9f9f9;
     color: #4a4a4a;
@@ -166,7 +191,7 @@
 
   .withdrowal {
     border-radius: 0;
-    width: 113px;
+    min-width: 113px;
     height: 40px;
     background: #f9f9f9;
     color: #4a4a4a;
